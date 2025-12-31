@@ -1,0 +1,1 @@
+# kanatake-map2026jan
