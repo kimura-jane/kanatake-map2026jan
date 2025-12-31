@@ -13,14 +13,16 @@
   <meta property="og:site_name" content="おにぎり屋かなたけ">
   <meta property="og:title" content="かなだけMAP 2026年1月 出店マップ">
   <meta property="og:description" content="おにぎり屋かなたけの2026年1月の出店スケジュールをマップで一覧表示。クリックでGoogleマップも開けます。">
-  <meta property="og:url" content="https://kimura-jane.github.io/kanatake-map-2026jan/">
-  <meta property="og:image" content="https://kimura-jane.github.io/kanatake-map-2026jan/kanadake-map-2026-01_ogp.jpg?v=1">
+  <meta property="og:url" content="https://kanatake-map2026jan.pages.dev/">
+  <meta property="og:image" content="https://kanatake-map2026jan.pages.dev/IMG_3189.jpeg?v=2">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="かなだけMAP 2026年1月 出店マップ">
   <meta name="twitter:description" content="おにぎり屋かなたけの2026年1月の出店スケジュールをマップで一覧表示。">
-  <meta name="twitter:image" content="https://kimura-jane.github.io/kanatake-map-2026jan/kanadake-map-2026-01_ogp.jpg?v=1">
+  <meta name="twitter:image" content="https://kanatake-map2026jan.pages.dev/IMG_3189.jpeg?v=2">
 
   <!-- Leaflet -->
   <link rel="stylesheet"
@@ -32,7 +34,7 @@
           crossorigin defer></script>
 
   <!-- 出店データ（同じディレクトリに spots.js を置く）-->
-  <script src="spots.js?v=20260101" defer></script>
+  <script src="spots.js?v=20260102" defer></script>
 
   <style>
     html, body {
@@ -96,6 +98,7 @@
     }
   </style>
 </head>
+
 <body>
   <div id="map" role="region" aria-label="地図"></div>
 
@@ -132,7 +135,7 @@
       if (!spots.length) {
         showMsg(
           '<p class="err">データが読み込めませんでした。<br>' +
-          'repo直下に <code>spots.js</code> があり、<code>window.spots = [...]</code> を定義しているか確認してください。</p>'
+          '同じフォルダに <code>spots.js</code> があり、<code>window.spots = [...]</code> を定義しているか確認して。</p>'
         );
       }
 
@@ -159,8 +162,11 @@
       });
 
       const existing = markers.filter(Boolean);
-      if (existing.length) map.fitBounds(L.featureGroup(existing).getBounds().pad(0.2));
-      else map.setView([35.7, 139.8], 9);
+      if (existing.length) {
+        map.fitBounds(L.featureGroup(existing).getBounds().pad(0.2));
+      } else {
+        map.setView([35.7, 139.8], 9);
+      }
     }
 
     document.addEventListener('DOMContentLoaded', initMap);
